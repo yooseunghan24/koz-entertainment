@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "variable.scss";
+@import "mixin.scss";
 main {
   padding-top: 70px;
   color: #fff;
@@ -11,16 +12,30 @@ main {
   padding-top: 100px;
   text-align: center;
   position: relative;
+  @include size(tablet) {
+    padding-top: 30px;
+  }
+  @include size(desktop) {
+    padding-top: 100px;
+  }
   h2 {
     font-size: 28px;
     position: relative;
     opacity: 0;
-    animation: fadeIn 1.3s .1s forwards;
-    @keyframes fadeIn {
-      to { opacity: 1;}
+    animation: fade 1.3s 0.1s forwards;
+    @include size(tablet) {
+      font-weight: bold;
+    }
+    @include size(desktop) {
+      font-size: 42px;
+    }
+    @keyframes fade {
+      to {
+        opacity: 1;
+      }
     }
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 50px;
       width: 1px;
@@ -28,9 +43,20 @@ main {
       background: #fff;
       left: 50%;
       transform: translateX(-50%);
-      animation: line .3s .8s forwards;
+      animation: line 0.3s 0.8s forwards;
       @keyframes line {
-        to { height: 42px;}
+        to {
+          height: 42px;
+        }
+      }
+      @include size(desktop) {
+        top: 90px;
+        animation: line-desktop 0.3s 0.8s forwards;
+        @keyframes line-desktop {
+          to {
+            height: 82px;
+          }
+        }
       }
     }
   }
@@ -40,13 +66,20 @@ main {
   width: 100%;
   top: 60%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   height: 393px;
   background: url(../img/about_bg.png) no-repeat center;
   background-size: 60%;
   background-position: center 90px;
   padding: 80px 0 92px;
-  h3 {
+  @include size(tablet) {
+    top: 55%;
+  }
+  @include size(desktop) {
+    background-size: auto;
+    background-position: center;
+  }
+  .intro_logo {
     margin-bottom: 40px;
     font-size: 18px;
     display: flex;
@@ -58,26 +91,74 @@ main {
       opacity: 0;
       animation: textDiv 2.3s 1.5s forwards;
       @keyframes textDiv {
-        to {opacity: 1}
+        to {
+          opacity: 1;
+        }
+      }
+      @include size(tablet) {
+        height: 160px;
+        padding-top: 30px;
       }
       img {
         height: 40px;
         vertical-align: middle;
+        @include size(tablet) {
+          height: auto;
+        }
+        @include size(desktop) {
+          vertical-align: bottom;
+        }
       }
       img.ktext {
-        animation: ktext .5s 3.5s forwards;
+        animation: ktext 0.5s 3.5s forwards;
         @keyframes ktext {
-          to { transform: translateX(68px)}
+          to {
+            transform: translateX(68px);
+          }
+        }
+        @include size(tablet) {
+          animation: ktext-tablet 0.5s 3.5s forwards;
+          @keyframes ktext-tablet {
+            to {
+              transform: translateX(85px);
+            }
+          }
+        }
+        @include size(desktop) {
+          animation: ktext-desktop 0.5s 3.5s forwards;
+          @keyframes ktext-desktop {
+            to {
+              transform: translateX(174px);
+            }
+          }
         }
       }
       img.otext {
-        transition: .1s 4s;
-        animation: otext .5s 3.5s forwards;
+        transition: 0.1s 4s;
+        animation: otext 0.5s 3.5s forwards;
         @keyframes otext {
-          to { transform: translateX(20px)}
+          to {
+            transform: translateX(20px);
+          }
         }
         &.active {
           opacity: 0;
+        }
+        @include size(tablet) {
+          animation: otext-tablet 0.5s 3.5s forwards;
+          @keyframes otext-tablet {
+            to {
+              transform: translateX(35px);
+            }
+          }
+        }
+        @include size(desktop) {
+          animation: otext-desktop 0.5s 3.5s forwards;
+          @keyframes otext-desktop {
+            to {
+              transform: translateX(82px);
+            }
+          }
         }
       }
       img.fireO {
@@ -86,9 +167,19 @@ main {
         top: -25px;
         left: 15px;
         opacity: 0;
-        animation: fireO .1s 4.2s forwards;
+        animation: fireO 0.1s 4.2s forwards;
         @keyframes fireO {
-          to { opacity: 1;}
+          to {
+            opacity: 1;
+          }
+        }
+        @include size(tablet) {
+          height: auto;
+          top: -29px;
+          left: 23px;
+        }
+        @include size(desktop) {
+          left: 70px;
         }
       }
       img.ztext {
@@ -96,27 +187,55 @@ main {
         position: absolute;
         left: -10px;
         top: 0;
-        transition: .5s 3.5s;
-        animation: ztext .1s 2.8s forwards;
+        transition: 0.5s 3.5s;
+        animation: ztext 0.1s 2.8s forwards;
         @keyframes ztext {
-          to {opacity: 1;}
+          to {
+            opacity: 1;
+          }
         }
         &.active {
-          transform: translate(-26px);
+          transform: translateX(-26px);
+        }
+        @include size(tablet) {
+          left: -10px;
+          top: 30px;
+        }
+        @include size(desktop) {
+          left: -20px;
         }
       }
       img.jtext {
-        animation: jtext .1s 2.7s forwards;
+        animation: jtext 0.1s 2.7s forwards;
         @keyframes jtext {
-          to { opacity: 0;}
+          to {
+            opacity: 0;
+          }
         }
       }
       span {
         color: $bgcolor-button;
-        animation: smalltext .3s 3.5s forwards;
+        animation: smalltext 0.3s 3.5s forwards;
         @keyframes smalltext {
-          to { opacity: 0;}
+          to {
+            opacity: 0;
+          }
         }
+        @include size(tablet) {
+          font-size: 30px;
+        }
+        @include size(desktop) {
+          font-size: 60px;
+        }
+      }
+    }
+    div:last-child span {
+      @include size(tablet) {
+        position: relative;
+        top: -10px;
+      }
+      @include size(desktop) {
+        top: -23px;
       }
     }
   }
@@ -124,9 +243,17 @@ main {
     font-size: 13px;
     padding: 0 16px;
     opacity: 0;
-    animation: textP .3s 3s forwards;
+    animation: textP 0.3s 3s forwards;
     @keyframes textP {
-      to {opacity: 1;}
+      to {
+        opacity: 1;
+      }
+    }
+    @include size(desktop) {
+      font-size: 16px;
+    }
+    @include size(large-desktop) {
+      font-size: 18px;
     }
   }
 } // intro_koz
@@ -136,8 +263,11 @@ main {
   top: 26%;
   text-align: center;
   h4 {
+    @include size(desktop) {
+      font-size: 18px;
+    }
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 30px;
       width: 1px;
@@ -145,33 +275,117 @@ main {
       background: #fff;
       left: 50%;
       transform: translateX(-50%);
-      animation: line .3s .8s forwards;
+      animation: line 0.3s 0.8s forwards;
       @keyframes line {
-        to { height: 42px;}
+        to {
+          height: 42px;
+        }
+      }
+      @include size(desktop) {
+        top: 65px;
+        animation: line-desktop 0.3s 0.8s forwards;
       }
     }
   }
   & > div {
     padding-top: 12vh;
+    @include size(desktop) {
+      display: flex;
+      justify-content: center;
+      padding-top: 17vh;
+    }
   }
   .line_text {
     font-size: 25px;
     line-height: 50px;
     opacity: 0;
-    @keyframes fade {
-      to { opacity: 1;}
+    animation: fade 0.5s forwards;
+    @include size(desktop) {
+      display: none;
     }
     &:first-child {
-      animation: fade .5s 6s forwards;
+      animation-delay: 6s;
     }
     &:nth-child(2) {
-      animation: fade .5s 6.5s forwards;
+      animation-delay: 6.5s;
     }
     &:nth-child(3) {
-      animation: fade .5s 7s forwards;
+      animation-delay: 7s;
     }
     &:nth-child(4) {
-      animation: fade .5s 7.5s forwards;
+      animation-delay: 7.5s;
+    }
+  }
+  .circle_text {
+    display: none;
+    @include size(desktop) {
+      display: block;
+      position: relative;
+      margin-right: 20px;
+      width: 180px;
+      height: 180px;
+      .circle {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 1px solid #6a6a6a;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        cursor: default;
+        opacity: 0;
+        animation: extend 0.5s forwards;
+        @keyframes extend {
+          to {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+        }
+      }
+      .text {
+        font-size: 25px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        opacity: 0;
+        animation: fade 0.5s forwards;
+      }
+      &:nth-child(5) {
+        .circle {
+          animation-delay: 5s;
+        }
+        .text {
+          animation-delay: 5.5s;
+        }
+      }
+      &:nth-child(6) {
+        .circle {
+          animation-delay: 6s;
+        }
+        .text {
+          animation-delay: 6.5s;
+        }
+      }
+      &:nth-child(7) {
+        .circle {
+          animation-delay: 7s;
+        }
+        .text {
+          animation-delay: 7.5s;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+        .circle {
+          animation-delay: 8s;
+        }
+        .text {
+          animation-delay: 8.5s;
+        }
+      }
     }
   }
 }
